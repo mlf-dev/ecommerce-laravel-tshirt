@@ -17,7 +17,7 @@
                     <div class="card mb-4 box-shadow">
                         <img src="{{asset('produits/'.$product->photo_principale)}}" class="card-img-top img-fluid" alt="Responsive image">
                         <div class="card-body">
-                            <p class="card-text">{{$product->nom}}<br>{{$product->description}}<br>{{$product->category->nom}}</p>
+                            <p class="card-text">{{$product->nom}}<br>{{$product->description}}<br>Catégorie : <a href="{{route('voir_produits_par_categorie',['id'=>$product->category->id])}}">{{$product->category->nom}}</a></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="price">{{$product->prixTTC()}}</span>
                                 <a href="{{route('voir_produit',['id'=>$product->id])}}" class="btn btn-sm btn-outline-secondary"><i class="fas fa-eye"></i></a>

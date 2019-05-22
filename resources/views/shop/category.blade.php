@@ -1,6 +1,16 @@
 @extends('shop')
 @section('content')
 
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">{{$category->nom}}</li>
+            <li class="breadcrumb-item"><a href="#">Les goonies</a></li>
+            <li class="breadcrumb-item"><a href="#">Star Wars</a></li>
+            <li class="breadcrumb-item"><a href="#">Star Trek</a></li>
+            <li class="breadcrumb-item"><a href="#">Superman</a></li>
+        </ol>
+    </nav>
+
     <div class="py-3">
         <div class="container-fluid">
             <div class="row">

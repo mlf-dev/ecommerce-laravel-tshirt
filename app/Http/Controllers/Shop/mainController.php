@@ -20,14 +20,14 @@ class mainController extends Controller
         $products = Product::all();
 
         // SELECT * FROM category;
-        $categories = Category::all();
+        //$categories = Category::all(); -> remplacé par View share dans AppServiceProvider
 
         // var_dump($products);
         // die();
         // dd($products, $categories);
 
         // On passe les données de la base de données dans la vue :
-        return view('shop.index', ['products'=>$products, 'categories'=>$categories]); // va récupérer le fichier index dans le dossier shop
+        return view('shop.index', ['products'=>$products]); // va récupérer le fichier index dans le dossier shop
     }
 
     public function product(Request $request){ // Request illuminate Http
