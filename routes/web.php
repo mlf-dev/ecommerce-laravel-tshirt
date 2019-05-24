@@ -23,3 +23,6 @@ Route::get('/', 'Shop\MainController@index')->name('homepage'); // on appelle la
 Route::get('/product/{id}', 'Shop\MainController@product')->name('voir_produit'); // Permet de faire appel à "voir_produit" lorsque l'on configure les liens dans le code html, ainsi si on change l'uri dans la route, elle sera modifiée automatiquement dans les autres fichiers
 
 Route::get('/category/{id}','Shop\MainController@viewByCat')->name('voir_produits_par_categorie');
+
+Route::post('/cart/add/{id}', 'Shop\CartController@add')->name('cart_add');
+

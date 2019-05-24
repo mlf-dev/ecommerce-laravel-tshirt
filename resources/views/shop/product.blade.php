@@ -17,19 +17,26 @@
             <h1 class="jumbotron-heading">{{$product->nom}}</h1>
             <h5>{{$product->prixTTC()}}</h5>
             <p class="lead text-muted">{{$product->description}}</p>
+            @foreach($product->tags as $tag)
+                <span class="badge badge-warning">{{$tag->nom}}</span>
+            @endforeach
             <hr>
-            <label for="size">Choisissez votre taille</label>
-            <select name="size" id="size" class="form-control">
-                <option value="xs">XS</option>
-                <option value="s">S</option>
-                <option value="m">M</option>
-                <option value="l">L</option>
-                <option value="xl">XL</option>
-                <option value="xxl">XXL</option>
-            </select>
-            <p>
-                <a href="#" class="btn btn-cart my-2 btn-block"><i class="fas fa-shopping-cart"></i> Ajouter au Panier</a>
-            </p>
+
+            <form action="{{route('cart_add', ['id'=>$product->id])}}" method="POST" id="cart_add">
+                @csrf {{--permet de sécuriser l'envoie du formulaire qui n'est possible qu'à partir du nom de domaine du site et non pas d'un autre, permet de sécuriser la faille des formulaires--}}
+                <label for="size">Choisissez votre taille</label>
+                <select name="size" id="size" class="form-control">
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                    <option value="xxl">XXL</option>
+                </select>
+            </form>
+
+            {{--form fait le lien avec l'id du formulaire, et bien penser à ajouter le type="submit" au bouton pour que cela fonctionne--}}
+            <button form="cart_add" type="submit" class="btn btn-cart my-2 btn-block"><i class="fas fa-shopping-cart"></i>Ajouter au Panier</button>
 
         </div>
     </div>

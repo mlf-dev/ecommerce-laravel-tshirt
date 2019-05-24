@@ -3,11 +3,19 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
+            @if($category->id_parent !== null)
+                <li class="breadcrumb-item active" aria-current="page">
+                    <a href="{{route('voir_produits_par_categorie', ['id'=>$category->parent->id])}}">
+                        {{$category->parent->nom}}
+                    </a>
+                </li>
+            @endif
+
+
             <li class="breadcrumb-item active" aria-current="page">{{$category->nom}}</li>
-            <li class="breadcrumb-item"><a href="#">Les goonies</a></li>
-            <li class="breadcrumb-item"><a href="#">Star Wars</a></li>
-            <li class="breadcrumb-item"><a href="#">Star Trek</a></li>
-            <li class="breadcrumb-item"><a href="#">Superman</a></li>
+            @foreach ($category->children as $category_child)
+            <li class="breadcrumb-item"><a href="{{route('voir_produits_par_categorie', ['id'=>$category_child->id])}}">{{$category_child->nom}}</a></li>
+            @endforeach
         </ol>
     </nav>
 
