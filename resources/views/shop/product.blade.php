@@ -24,6 +24,10 @@
 
             <form action="{{route('cart_add', ['id'=>$product->id])}}" method="POST" id="cart_add">
                 @csrf {{--permet de sécuriser l'envoie du formulaire qui n'est possible qu'à partir du nom de domaine du site et non pas d'un autre, permet de sécuriser la faille des formulaires--}}
+                <div>
+                    <label for="qty">Quantité</label>
+                    <input type="number" name="qty" value="1" class="form-control">
+                </div>
                 <label for="size">Choisissez votre taille</label>
                 <select name="size" id="size" class="form-control">
                     <option value="xs">XS</option>

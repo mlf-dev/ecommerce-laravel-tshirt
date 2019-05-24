@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         //View::share('categories',Category::all());
+        // passer des datas à toutes les pages
         View::share('categories',Category::where('id_parent','=',null)->get());
-
+//        View::share('total_products_cart',\Cart::getContent()->count());
     }
 }

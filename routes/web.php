@@ -26,3 +26,6 @@ Route::get('/category/{id}','Shop\MainController@viewByCat')->name('voir_produit
 
 Route::post('/cart/add/{id}', 'Shop\CartController@add')->name('cart_add');
 
+Route::post('/cart/update', 'Shop\CartController@update')->name('cart_update');
+
+Route::get('/cart', 'Shop\CartController@cart')->name('cart');
