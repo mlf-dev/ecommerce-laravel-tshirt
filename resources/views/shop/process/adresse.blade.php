@@ -4,8 +4,8 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Panier</a></li>
-        <li class="breadcrumb-item"><a href="#">Identification</a></li>
+        <li class="breadcrumb-item"><a href="{{route('cart')}}">Panier</a></li>
+        <li class="breadcrumb-item"><a href="{{route('order_auth')}}">Identification</a></li>
         <li class="breadcrumb-item active" aria-current="page">Adresse</li>
         <li class="breadcrumb-item"><a href="#">Paiement</a></li>
         <li class="breadcrumb-item"><a href="#">Merci</a></li>
@@ -26,11 +26,22 @@
         <div class="row">
 
             <div class="col-md-12 order-md-1">
-                <form class="needs-validation" novalidate>
+
+                {{--s'il y a au moins une erreur : --}}
+                @if($errors->any())
+                    <div class="alert-danger">
+                        {{--on affiche successivement les messages d'erreur : --}}
+                        @foreach($errors->all() as $error)
+                            <p>{{$error}}</p>
+                        @endforeach
+                    </div>
+                @endif
+                <form method="POST" action="{{route('order_adresse_store')}}" class="needs-validation">
+                   @csrf
                     <div class="row">
                         <div class="col-md-4 mb-4">
                             <label for="prenom">Votre prénom</label>
-                            <input type="text" class="form-control" id="prenom" name="nom">
+                            <input type="text" class="form-control" id="prenom" name="prenom">
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="nom">Votre nom <span class="text-danger">*</span></label>
@@ -38,13 +49,13 @@
                         </div>
                         <div class="col-md-4 mb-4">
                             <label for="telephone">Votre téléphone <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="telephone" name="code_postal">
+                            <input type="text" class="form-control" id="telephone" name="telephone">
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="address">Votre adresse <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="address">
+                        <input type="text" class="form-control" id="address" name="adresse">
                     </div>
 
                     <div class="mb-3">
@@ -55,7 +66,7 @@
                     <div class="row">
                         <div class="col-md-4 mb-4">
                             <label for="ville">Votre ville <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="ville" name="code_postal">
+                            <input type="text" class="form-control" id="ville" name="ville">
                         </div>
 
                         <div class="col-md-3 mb-3">
@@ -65,7 +76,7 @@
 
                         <div class="col-md-5 mb-3">
                             <label for="country">Votre pays <span class="text-danger">*</span></label>
-                            <select class="custom-select d-block w-100" id="country" required>
+                            <select class="custom-select d-block w-100" id="pays" name="pays" required>
                                 <option value="FR">France</option>
                                 <option value="BE">Belgique</option>
                                 <option value="CH">Suisse</option>

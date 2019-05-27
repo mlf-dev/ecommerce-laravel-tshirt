@@ -5,9 +5,9 @@
     <nav aria-label="breadcrumb">
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Panier</a></li>
+            <li class="breadcrumb-item"><a href="{{route('cart')}}">Panier</a></li>
             <li class="breadcrumb-item active" aria-current="page">Identification</li>
-            <li class="breadcrumb-item"><a href="">Adresse</a></li>
+            <li class="breadcrumb-item"><a href="{{route('order_adresse')}}">Adresse</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="#">Paiement</a></li>
             <li class="breadcrumb-item"><a href="#">Merci</a></li>
         </ol>

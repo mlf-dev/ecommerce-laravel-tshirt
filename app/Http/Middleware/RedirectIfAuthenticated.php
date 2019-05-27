@@ -17,10 +17,11 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        // on redirige vers order/adress  (de base la redirection se fait sur home) si l'utilisateur est logué, ici check vérifie si l'utilisateur est logué
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            return redirect('/order/adress');
         }
-
+        // sinon redirige vers la prochaine requête (en fonction de la page sur laquelle on est)
         return $next($request);
     }
 }

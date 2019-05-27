@@ -40,4 +40,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/order/auth', 'Shop\ProcessController@identification')->name('order_auth');
 
+// appel de cette uri en get :
 Route::get('/order/adress', 'Shop\ProcessController@adresse')->name('order_adresse');
+// appel de cette même uri en post :
+Route::post('/order/adress', 'Shop\ProcessController@adresseStore')->name('order_adresse_store');
+
+Route::get('/order/paiement', 'Shop\ProcessController@paiement')->name('order_paiement');
