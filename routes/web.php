@@ -28,4 +28,16 @@ Route::post('/cart/add/{id}', 'Shop\CartController@add')->name('cart_add');
 
 Route::post('/cart/update', 'Shop\CartController@update')->name('cart_update');
 
+Route::get('/cart/remove/{id}', 'Shop\CartController@remove')->name('cart_remove');
+
+
 Route::get('/cart', 'Shop\CartController@cart')->name('cart');
+
+//groupe des routes pour l'authentification généré automatiquement (php artisan make:auth)
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/order/auth', 'Shop\ProcessController@identification')->name('order_auth');
+
+Route::get('/order/adress', 'Shop\ProcessController@adresse')->name('order_adresse');

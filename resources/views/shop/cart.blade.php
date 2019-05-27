@@ -4,6 +4,7 @@
     <section class="py-5">
         <div class="container">
             <h1 class="jumbotron-heading"> <span class="badge badge-primary ">Votre panier </span></h1>
+            @if($total_products_cart > 0)
             <table class="table table-bordered table-responsive-sm">
                 <thead>
                 <tr>
@@ -19,13 +20,14 @@
                     <td>
                         <img width="110" class="rounded-circle img-thumbnail" src="produits/{{$product->attributes->photo}}" alt="">
                         {{--ce n'est pas $product->nom qui vient de la base de données, mais $product->name qui vient du panier (\Cart add)--}}
-                        {{$product->name}}
+                        {{$product->name}} / Taille : {{$product->attributes->size}}
+                        <a href="{{route('cart_remove', ['id'=>$product->id])}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                     </td>
                     <td>
                         <form action="{{route('cart_update')}}" id="update_qty_{{$product->id}}" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{$product->id}}">
-                            <input name="qty" style="display: inline-block" id="qte" class="form-control col-sm-4" type="number" value="{{$product->quantity}}">
+                            <input name="qty" style="display: inline-block" id="qte" class="form-control col-sm-4" type="number" value="{{$product->quantity}}" min="1">
 
 
                             <button form="update_qty_{{$product->id}}"  class="pl-2 btn btn-light"><i class="fas fa-sync"></i> </button>
@@ -59,7 +61,10 @@
                 </tr>
                 </tfoot>
             </table>
-            <a class="btn btn-block btn-outline-dark" href="">Commander</a>
+            <a class="btn btn-block btn-outline-dark" href="{{route('order_auth')}}">Commander</a>
+                @else
+                <p>Votre panier est tristement vide ... <a href="{{route('home')}}">Continuer mes achats</a></p>
+            @endif
         </div>
     </section>
 @endsection

@@ -17,13 +17,14 @@ class CartController extends Controller
 
         // ne pas faire l'autocomplétion
         \Cart::add(array(
-            'id' => $id_product,
+            'id' => $id_product."_".$request->size,
             'name' => $product->nom,
             'price' => $product->prix_ht,
             'quantity' => $request->qty,
             'attributes' => array(
                 'size'=>$request->size,
-                'photo'=>$product->photo_principale
+                'photo'=>$product->photo_principale,
+                'id' =>$request->size
             )
         ));
 
@@ -34,7 +35,7 @@ class CartController extends Controller
     // Afficher le contenu d'un panier
     public function cart(){
         // récupérer les produits ajoutés au panier (stockés dans la session du client) :
-        $products_cart = \Cart::getContent();
+        $products_cart = \Cart::getContent()->Sort();
         //calculer le sous-total :
         $total_panier_ht = \Cart::getSubTotal();
         $condition = new CartCondition([
@@ -56,15 +57,26 @@ class CartController extends Controller
     public function update(Request $request){
         //mettre à jour la quantité d'un produit du panier
         $qty = $request->qty;
-        // rediriger vers la page du panier avec les données du prix actualisées
-        \Cart::update($request->id, array(
-            'quantity'=>array(
-                // pour empêcher l'accumulation des quantité, remplace la quantité existante par la nouvelle
-                'relative'=>false,
-                'value'=>$qty
-            )
-        ));
+
+        // on vérifie que la quantité soit suppérieur à 0, pour ne pas avoir de valeur négative et se retrouver avec des totaux négatifs.
+        if($qty>0){
+            // rediriger vers la page du panier avec les données du prix actualisées
+            \Cart::update($request->id, array(
+                'quantity'=>array(
+                    // pour empêcher l'accumulation des quantité, remplace la quantité existante par la nouvelle
+                    'relative'=>false,
+                    'value'=>$qty
+                )
+            ));
+        }
+
         // redirection vers la page du panier
+        return redirect(route('cart'));
+    }
+
+    public function remove(Request $request){
+        $id_produit = $request->id;
+        \Cart::remove($id_produit);
         return redirect(route('cart'));
     }
 }

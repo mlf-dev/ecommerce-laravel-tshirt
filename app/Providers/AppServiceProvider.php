@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
+use App\Http\ViewComposers\HeaderComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,9 +27,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        //View::share('categories',Category::all());
+        // View::share('categories',Category::all());
         // passer des datas à toutes les pages
-        View::share('categories',Category::where('id_parent','=',null)->get());
-//        View::share('total_products_cart',\Cart::getContent()->count());
+        // View::share('categories',Category::where('id_parent','=',null)->get());
+        // View::share('total_products_cart',\Cart::getContent()->count());
+
+        // On passe les données à shop et à process (on ajoute shop.* pour faire hériter aussi aux sous-vues les variables, attention à bien laisser 'shop' quand même
+        view()->composer(['shop','process','shop.*'],HeaderComposer::class);
     }
 }
