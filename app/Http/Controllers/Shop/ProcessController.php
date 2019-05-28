@@ -111,6 +111,6 @@ class ProcessController extends Controller
 
     // Etape 4 : redirection vers la page merci
     public function merci(){
-
+        return view('shop.process.merci');
     }
 }

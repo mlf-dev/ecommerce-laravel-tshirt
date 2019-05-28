@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a href="{{route('order_auth')}}">Identification</a></li>
             <li class="breadcrumb-item"><a href="{{route('order_adresse')}}">Adresse</a></li>
             <li class="breadcrumb-item active" aria-current="page">Paiement</li>
-            <li class="breadcrumb-item"><a href="#">Merci</a></li>
+            <li class="breadcrumb-item"><a href="{{route('order_merci')}}">Merci</a></li>
         </ol>
     </nav>
 
