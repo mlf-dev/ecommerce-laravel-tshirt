@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Adresse;
+use App\Order;
+use App\OrderProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -58,8 +60,57 @@ class ProcessController extends Controller
         return redirect(route('order_paiement'));
     }
 
+    // Etape 3 page de confirmation de paiement :
     public function paiement(){
         $total_a_payer = \Cart::getTotal();
         return view('shop.process.paiement', compact('total_a_payer'));
+    }
+
+    // etape 3 bis création de la commande dans la db
+    public function confirmationCommande(){
+
+        // Création de l'objet Order commande et hydratation
+        $order = new Order();
+        $order->total_ttc = \Cart::getTotal();
+        $order->total_ht = \Cart::getSubTotal();
+        $order->tva = \Cart::getTotal() - \Cart::getSubTotal();
+        $order->taux_tva = 20;
+        $user = Auth::user();
+        // Associer Order à une adresse de livraison entré par l'utilisateur
+        $order->adresse_id = $user->adresse_id;
+        // Associer Order à l'utilisateur connecté
+        $order->user_id = $user->id;
+        // On envoie dans la base de données :
+        $order->save();
+        // Création d'un objet OrderProduct par produit dans le panier
+        $products = \Cart::getContent();
+        foreach($products as $product){
+            $order_product = new OrderProduct();
+            $order_product->qty = $product['quantity']; // récupéré grâce au stockage des attributs dans CartContropller méthode add
+            $order_product->prix_unitaire_ht = $product['price'];
+            $order_product->prix_unitaire_ttc = $product['price'] * 1.2;
+
+            $prix_total_ttc = ($product['price'] * $product['quantity']) * 1.2;
+            $prix_total_ht = $product['price'] * $product['quantity'];
+
+            $order_product->prix_total_ttc = $prix_total_ttc;
+            $order_product->prix_total_ht = $prix_total_ht;
+            $order_product->size = $product['attributes']['size'];
+            $order_product->order_id = $order->id;
+            $order_product->product_id = $product['attributes']['id'];
+
+            // on sauvegarde dans la base de données
+            $order_product->save();
+        }
+
+        // Vider le panier
+        \Cart::clear();
+        // Rediriger vers page merci
+        return redirect(route('order_merci'));
+    }
+
+    // Etape 4 : redirection vers la page merci
+    public function merci(){
+
     }
 }

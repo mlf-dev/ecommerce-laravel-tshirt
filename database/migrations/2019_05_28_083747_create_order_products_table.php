@@ -28,7 +28,7 @@ class CreateOrderProductsTable extends Migration
             $table->float('prix_unitaire_ht');
             $table->float('prix_unitaire_ttc');
             $table->float('prix_total_ht');
-            $table->float('prix total_ttc');
+            $table->float('prix_total_ttc');
 
             // Clé primaire sur 3 attributs :
             $table->primary(['order_id','product_id','size']);

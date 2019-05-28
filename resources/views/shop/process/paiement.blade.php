@@ -32,7 +32,7 @@
 
                 <div class="col-md-12 order-md-1">
 
-                    <button class="btn btn-warning btn-lg btn-block" type="submit">Valider ma commande</button>
+                    <a class="btn btn-warning btn-lg btn-block" href="{{route('order_confirmation')}}">Valider ma commande</a>
                 </div>
             </div>
         </div>

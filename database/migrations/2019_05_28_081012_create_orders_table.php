@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->float('total_ttc');
             $table->float('total_ht');
             $table->float('tva');
-            $table->float('taux-tva');
+            $table->float('taux_tva');
 
             // si un compte client est supprimé on ne veut pas supprimer les commandes associées (utilisation du soft delete pour les comptes clients), mais dans tous les cas il vaut mieux garder les commandes dans la base de données ne serait-ce que pour la comptabilité. On veut malgré tout empêcher qu'une commande soit créée sans adresse, la clé étrangère n'est donc pas nullable :
             $table->unsignedBigInteger('adresse_id');

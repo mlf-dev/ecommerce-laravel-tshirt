@@ -1150,7 +1150,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="236" name="prix total_ttc">
+    <column id="277" parent="236" name="prix_total_ttc">
       <Position>10</Position>
       <DataType>double(8,2 digit)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1216,21 +1216,21 @@ size</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="237" name="taux-tva">
+    <column id="288" parent="237" name="adresse_id">
       <Position>7</Position>
-      <DataType>double(8,2 digit)|0s</DataType>
+      <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="237" name="adresse_id">
+    <column id="289" parent="237" name="user_id">
       <Position>8</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="237" name="user_id">
+    <column id="290" parent="237" name="taux_tva">
       <Position>9</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
+      <DataType>double(8,2 digit)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
