@@ -15,7 +15,7 @@ class AddFieldPtixTotalTtcTableOrderProducts extends Migration
     {
         Schema::table('order_products', function (Blueprint $table) {
             //
-            $table->float('prix_total_ttc');
+            //$table->float('prix_total_ttc');
         });
     }
 

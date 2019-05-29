@@ -15,7 +15,7 @@ class AddFieldTauxTvaTableOrders extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             //
-            $table->float('taux_tva');
+            //$table->float('taux_tva');
         });
     }
 
