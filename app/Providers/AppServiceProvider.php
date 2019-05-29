@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Category;
 use App\Http\ViewComposers\HeaderComposer;
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,8 +25,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
+        if(env('APP_ENV') === "production"){
+            $url->forcescheme('https');
+        }
         //
         // View::share('categories',Category::all());
         // passer des datas à toutes les pages
