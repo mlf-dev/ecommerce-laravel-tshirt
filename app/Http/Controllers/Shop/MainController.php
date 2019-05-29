@@ -8,7 +8,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class mainController extends Controller
+class MainController extends Controller
 {
     public function test(Request $request){
         $prenom = $request->prenom; // permet de récupérer grâce à Request (Http) les paramètres dans l'url, ici on récupère le paramètre prénom configuré dans les Routes
