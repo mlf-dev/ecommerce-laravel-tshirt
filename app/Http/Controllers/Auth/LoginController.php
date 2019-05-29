@@ -50,6 +50,8 @@ class LoginController extends Controller
         }
         // si l'accès est impossible, on redirige sur le form du login :
         else {
+            // Avant la redirection et l'affichage du message d'erreur on délogue l'utilisateur (car même s'il ne peut pas accéder à la page, s'il entre un bon mdp et un bon login, il se logue quand même, donc logout avant redirection)
+            Auth::logout();
             return redirect(route('backend_login'))->with('danger','Impossible de vous identifier');
         }
     }

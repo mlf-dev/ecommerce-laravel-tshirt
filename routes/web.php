@@ -55,4 +55,8 @@ Route::get('/backend/login', 'Backend\MainController@loginBackend')->name('backe
 
 Route::post('/backend/login', 'Auth\LoginController@authenticateBackend')->name('backend_login_submit');
 
-Route::get('/backend', 'Backend\MainController@index')->name('backend_homepage');
+Route::middleware(['auth.admin'])->group(function(){
+    Route::get('/backend', 'Backend\MainController@index')->name('backend_homepage');
+});
+
+Route::get('/backend/order/{id}','Backend\MainController@orderShow')->name('backend_order_show');

@@ -15,7 +15,9 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->hasRole('Admin') == false){
+        // si l'utilisateur n'est pas logué ou qu'il n'est pas admin alors :
+        if($request->user() == false || $request->user()->hasRole('Admin') == false){
+            /* On le redirige vers la page home */
             return redirect(route('homepage'));
         }
         return $next($request);

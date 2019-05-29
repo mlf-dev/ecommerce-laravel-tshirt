@@ -20,19 +20,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>5</td>
-                    <td>15/05/2018</td>
-                    <td>Marie de Ubeda</td>
-                    <td>75009</td>
-                    <td>57.00 €</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary">Voir</button>
-                    </td>
-                </tr>
+                @foreach($orders as $order)
+                    <tr>
+                        <td>{{$order->id}}</td>
+                        <td>{{$order->created_at}}</td>
+                        <td>{{$order->user->name}}</td>
+                        <td>{{$order->adresse->code_postal}}</td>
+                        <td>{{number_format($order->total_ttc,2)}}</td>
+                        <td>
+                            <a href="{{route('backend_order_show',['id'=>$order->id])}}" class="btn btn-sm btn-primary">Voir</a>
+                        </td>
+                    </tr>
+                @endforeach
+
                 </tbody>
             </table>
-            <nav aria-label="Page navigation example">
+
+            {{$orders->links()}}
+
+            {{--<nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
@@ -50,7 +56,7 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav>--}}
         </div>
     </main>
 
