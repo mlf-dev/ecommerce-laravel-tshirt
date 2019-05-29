@@ -13,7 +13,7 @@ class MainController extends Controller
     }
 
     // Afficher la page d'accueil : la page des commandes
-    public function home(){
-
+    public function index(){
+        return view('backend.index');
     }
 }

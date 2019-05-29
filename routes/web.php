@@ -54,3 +54,5 @@ Route::get('/order/merci', 'Shop\ProcessController@merci')->name('order_merci');
 Route::get('/backend/login', 'Backend\MainController@loginBackend')->name('backend_login');
 
 Route::post('/backend/login', 'Auth\LoginController@authenticateBackend')->name('backend_login_submit');
+
+Route::get('/backend', 'Backend\MainController@index')->name('backend_homepage');
