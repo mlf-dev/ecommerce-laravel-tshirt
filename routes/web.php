@@ -50,3 +50,7 @@ Route::get('/order/paiement', 'Shop\ProcessController@paiement')->name('order_pa
 Route::get('/order/confirmation', 'Shop\ProcessController@confirmationCommande')->name('order_confirmation');
 
 Route::get('/order/merci', 'Shop\ProcessController@merci')->name('order_merci');
+
+Route::get('/backend/login', 'Backend\MainController@loginBackend')->name('backend_login');
+
+Route::post('/backend/login', 'Auth\LoginController@authenticateBackend')->name('backend_login_submit');
