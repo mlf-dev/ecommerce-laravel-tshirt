@@ -12,7 +12,6 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         //
-/*
         $category = new \App\Category();
         $category->nom = "Films";
         $category->is_online = 1;
@@ -37,7 +36,7 @@ class CategoriesTableSeeder extends Seeder
         $category5->nom = "Sport";
         $category5->is_online = 1;
         $category5->save();
-*/
+
         $sous_categorie = new \App\Category();
         $sous_categorie->nom = "Les Goonies";
         $sous_categorie->is_online = 1;
